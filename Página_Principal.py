@@ -7,7 +7,7 @@ from datetime import datetime
 
 idade = int(datetime.now().year) - 2004
 path = 'c:/Users/Admin/OneDrive/Desktop/ProjetosPython/PycharmProjects/Personal/ScriptsPy/Streamlit/CV/'
-image = Image.open(os.path.join(path, 'foto.jpeg'))
+image = Image.open('foto.jpeg')
 
 
 st.markdown("<h1 style='text-align: center;'>Currículo/Portfólio</h1>", unsafe_allow_html=True)
