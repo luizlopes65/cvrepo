@@ -17,7 +17,7 @@ with st.expander('MNIST-Classifier'):
     train_df = pd.read_csv(os.path.join('pages', 'mnist_test.csv'))
     st.session_state.labels = train_df['label']
     st.session_state.labels = st.session_state.labels[st.session_state.labels == st.session_state.numberchosen]
-    st.session_state.escolha = np.random.choice(labels.index)
+    st.session_state.escolha = np.random.choice(st.session_state.labels.index)
     train_df = train_df.drop(columns=['label'])
     train_df = train_df.apply(lambda x: x/255)
     st.image(np.array(train_df.iloc[st.session_state.escolha]).reshape(28,28), caption='Imagem do número escolhido', use_column_width=True)
