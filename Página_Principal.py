@@ -6,7 +6,6 @@ from PIL import Image
 from datetime import datetime
 
 idade = int(datetime.now().year) - 2004
-path = 'c:/Users/Admin/OneDrive/Desktop/ProjetosPython/PycharmProjects/Personal/ScriptsPy/Streamlit/CV/'
 
 image = Image.open(os.path.join(path, 'foto.jpeg'))
 
