@@ -15,7 +15,7 @@ with st.expander('MNIST-Classifier'):
     model = tf.keras.models.load_model(os.path.join('pages', 'MNIST_model.keras'))
     st.session_state.numberchosen = st.select_slider('Selecione um número:', [0,1,2,3,4,5,6,7,8,9])
     train_df = pd.read_csv(os.path.join('pages', 'mnist_test.csv'))
-    labels = train_df['label']
+    st.session_state.labels = train_df['label']
     st.session_state.labels = labels[labels == st.session_state.numberchosen]
     st.session_state.escolha = np.random.choice(labels.index)
     train_df = train_df.drop(columns=['label'])
