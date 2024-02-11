@@ -1,1 +1,5 @@
 tensorflow
+streamlit
+os
+numpy
+pandas
