@@ -13,14 +13,14 @@ with st.expander('MNIST-Classifier'):
     st.write('A minha abordagem do problema foi criar um modelo de rede neural convolucional 2D, utilizando Tensorflow com aceleração da GPU, obtendo até 0.98 de acurácia;')
     st.write('Abaixo você pode testar e observar a performace do modelo:')
     model = tf.keras.models.load_model(os.path.join('pages', 'MNIST_model.keras')
-    numberchosen = st.select_slider('Número a prever:', [0,1,2,3,4,5,6,7,8,9])
+    st.session_state.numberchosen = st.select_slider('Número a prever:', [0,1,2,3,4,5,6,7,8,9])
     train_df = pd.read_csv(os.path.join('pages', 'mnist_test.csv')
     labels = train_df['label']
-    labels = labels[labels == numberchosen]
-    escolha = np.random.choice(labels.index)
+    st.session_state.labels = labels[labels == st.session_state.numberchosen]
+    st.session_state.escolha = np.random.choice(labels.index)
     train_df = train_df.drop(columns=['label'])
     train_df = train_df.apply(lambda x: x/255)
-    st.image(np.array(train_df.iloc[escolha]).reshape(28,28), caption='Imagem do número escolhido', use_column_width=True)
+    st.image(np.array(train_df.iloc[st.session_state.escolha]).reshape(28,28), caption='Imagem do número escolhido', use_column_width=True)
     dados_treino = []
     for i in range(len(train_df)):
         dados_treino.append(list(train_df.iloc[i]))
@@ -31,11 +31,9 @@ with st.expander('MNIST-Classifier'):
 
     dados_treino_im = np.array(dados_treino_im).reshape(-1, 28, 28, 1)
 
-    y_pred = model.predict(dados_treino_im)
+    st.session_state.y_pred = model.predict(dados_treino_im)
 
-    print(y_pred[escolha])
-
-    st.write('O número predito pelo modelo foi', np.argmax(y_pred[escolha]))
+    st.write('O número predito pelo modelo foi', np.argmax(st.session_state.y_pred[st.session_state.escolha]))
 
 
 
