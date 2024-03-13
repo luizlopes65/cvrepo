@@ -14,9 +14,9 @@ with st.expander('MNIST-Classifier'):
     st.write('O dataset MNIST consistem em imagens de dígitos manuscritos de 0 a 9. O objetivo consiste em criar um modelo que consiga identificar o dígito a partir da imagem. Cada imagem é formada por 728 pixels (28x28) e possui seu respectivo label.')
     st.write('A minha abordagem do problema foi criar um modelo de rede neural convolucional 2D, utilizando Tensorflow com aceleração da GPU, obtendo até 0.98 de acurácia;')
     st.write('Abaixo você pode testar e observar a performace do modelo:')
-    model = tf.keras.models.load_model(os.path.join('pages','MNIST_model.keras'))
+    model = tf.keras.models.load_model('MNIST_model.keras')
     numberchosen = st.select_slider('Número a prever:', [0,1,2,3,4,5,6,7,8,9])
-    train_df = pd.read_csv(os.path.join('pages','mnist_test.csv'))
+    train_df = pd.read_csv('mnist_test.csv')
     labels = train_df['label']
     labels = labels[labels == numberchosen]
     escolha = np.random.choice(labels.index)
